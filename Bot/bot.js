@@ -1,18 +1,18 @@
-var HTTPS = require('https');
-var cool = require('cool-ascii-faces');
+//Change .env to include correct Bot ID
 
+var HTTPS = require('https');
 var botID = process.env.BOT_ID;
 
-function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^\/cool guy$/;
+function receive() {
+  var request = JSON.parse(this.req.chunks[0]), 
+  var signal = 'Bot';   //[String] signal to the bot to wake up
 
-  if(request.text && botRegex.test(request.text)) {
+  if(request.text == signal) {
     this.res.writeHead(200);
     postMessage();
     this.res.end();
   } else {
-    console.log("don't care");
+    console.log("N/A");
     this.res.writeHead(200);
     this.res.end();
   }
@@ -21,7 +21,7 @@ function respond() {
 function postMessage() {
   var botResponse, options, body, botReq;
 
-  botResponse = cool();
+  botResponse = 'Bot [String] response goes here';
 
   options = {
     hostname: 'api.groupme.com',
@@ -38,7 +38,7 @@ function postMessage() {
 
   botReq = HTTPS.request(options, function(res) {
       if(res.statusCode == 202) {
-        //neat
+        //ERROR
       } else {
         console.log('rejecting bad status code ' + res.statusCode);
       }
@@ -53,5 +53,4 @@ function postMessage() {
   botReq.end(JSON.stringify(body));
 }
 
-
-exports.respond = respond;
+exports.receive = receive;
