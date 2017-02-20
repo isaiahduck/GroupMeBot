@@ -1,7 +1,7 @@
 # GroupMeBots
 
 ###Description:  
-	A customizable GroupMe bot that can respond to message strings.   
+A customizable GroupMe bot that can respond to message strings.   
 ###Functionality:  
 	Functional for responding to message strings.  
 ###Notes:  
